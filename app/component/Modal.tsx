@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import router, { useRouter } from 'next/router';
 import styles from "../page.module.css";
 
 interface PhotoProps { name: string, imgUrl: string, location: string }
@@ -8,7 +9,9 @@ interface PhotoProps { name: string, imgUrl: string, location: string }
 export default function Modal({ name, imgUrl, location }: PhotoProps) {
     const [showModal, setShowModal] = useState(false);
     const modalRef = useRef<HTMLDivElement>(null); // Ref to access the modal element
-
+    const onDismiss = useCallback(() => {
+        router.back();
+      }, [router]);
     const handleClickOutside = (event: any) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {
             setShowModal(false);
@@ -54,7 +57,10 @@ export default function Modal({ name, imgUrl, location }: PhotoProps) {
                         </div>
                     </div>
 
-                    <div><button onClick={() => setShowModal(false)}>Close</button></div>
+                    <div><button onClick={() => {
+                        setShowModal(false)
+                        onDismiss()
+                        }}>Close</button></div>
                 </div>
             )}
         </div>

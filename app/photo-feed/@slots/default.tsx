@@ -1,4 +1,4 @@
-export default function Slots() {
+export default function Default() {
     return (
      null
     )

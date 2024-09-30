@@ -5,7 +5,8 @@ export default function PhotoFeedLayout({ children, slots }:
         <div style={{textAlign:"center", margin: "auto"}}>
             {children}
             <div style={{display: "flex"}}>
-            {slots}</div>
+            {/* {slots} */}
+            </div>
         </div>
     )
 }
